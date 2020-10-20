@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+  {% load static %}
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+
+  <title>John Stonemart Database</title>
+</head>
+<body>
+  <header class="cd-main-header js-cd-main-header">
+    <div class="cd-logo-wrapper">
+      <a href="#0" class="cd-logo">John Stonemart DB</a>
+    </div>
+
+    <div class="cd-search js-cd-search">
+
+        <input id="search_area" class="reset" type="text" placeholder="Search..." style="color: Black !important;">
+
+    </div>
+
+    <button class="reset cd-nav-trigger js-cd-nav-trigger" aria-label="Toggle menu"><span></span></button>
+
+    <ul class="cd-nav__list js-cd-nav__list">
+      <!--<li class="cd-nav__item"><a href="#0">Tour</a></li>-->
+      <!--<li class="cd-nav__item"><a href="#0">Support</a></li>-->
+      <li class="cd-nav__item cd-nav__item--has-children cd-nav__item--account js-cd-item--has-children">
+        <a href="#0">
+          <img src="{% static 'assets/img/cd-avatar.svg' %}" alt="avatar">
+          <span>Account</span>
+        </a>
+
+        <ul class="cd-nav__sub-list">
+          <li class="cd-nav__sub-item"><a href="/xadmin">My Account</a></li>
+          <!--<li class="cd-nav__sub-item"><a href="#0">Edit Account</a></li>-->
+          <li class="cd-nav__sub-item"><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </header> <!-- .cd-main-header -->
+
+  <main class="cd-main-content">
+    <nav class="cd-side-nav js-cd-side-nav">
+      <ul id='cli' class="cd-side__list js-cd-side__list">
+        <li class="cd-side__label"><span>Category</span></li>
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;overview js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Overview</a>-->
+          <!---->
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a href="#0">All Data</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Category 1</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Category 2</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;notifications cd-side__item&#45;&#45;selected js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Notifications<span class="cd-count">3</span></a>-->
+
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a aria-current="page" href="#0">All Notifications</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Friends</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Other</a></li>-->
+          <!--</ul>-->
+        </li>
+
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;comments js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Comments</a>-->
+          <!---->
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a href="#0">All Comments</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Edit Comment</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Delete Comment</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!---->
+      <!--<ul class="cd-side__list js-cd-side__list">-->
+        <!--<li class="cd-side__label"><span>Secondary</span></li>-->
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;bookmarks js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Bookmarks</a>-->
+          <!---->
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a href="#0">All Bookmarks</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Edit Bookmark</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Import Bookmark</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;images js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Images</a>-->
+          <!---->
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a href="#0">All Images</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Edit Image</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+    <!---->
+        <!--<li class="cd-side__item cd-side__item&#45;&#45;has-children cd-side__item&#45;&#45;users js-cd-item&#45;&#45;has-children">-->
+          <!--<a href="#0">Users</a>-->
+          <!---->
+          <!--<ul class="cd-side__sub-list">-->
+            <!--<li class="cd-side__sub-item"><a href="#0">All Users</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Edit User</a></li>-->
+            <!--<li class="cd-side__sub-item"><a href="#0">Add User</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+      </ul>
+
+      <!--<ul class="cd-side__list js-cd-side__list">-->
+        <!--<li class="cd-side__label"><span>Action</span></li>-->
+        <!--<li class="cd-side__btn"><button class="reset" href="#0">+ Button</button></li>-->
+      <!--</ul>-->
+    </nav>
+
+    <div class="cd-content-wrapper" style="padding-top: 20px">
+      <div  class="text-component text-center" style="text-align: left !important;">
+        <ul id="document_files" class="accordion" data-accordion data-options="multi_expand:true;"></ul>
+        <div id = "page" style = "float: right"></div>
+      </div>
+    </div> <!-- .content-wrapper -->
+  </main> <!-- .cd-main-content -->
+  <script  src="{% static 'assets/js/util.js' %}"></script> <!-- util functions included in the CodyHouse framework -->
+  <script  src="{% static 'assets/js/menu-aim.js' %}"></script>
+  <script  src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    var url_link = null;
+    $(document).ready(function(){
+        $.get("api/category/",function(data,status){
+            console.log(data)
+            for(let item in data){
+                let cname = data[item].name;
+                 var li = document.createElement("li");
+                 li.setAttribute('class', "cd-side__item cd-side__item--has-children cd-side__item--notifications cd-side__item--selected js-cd-item--has-children");
+                 var link = document.createElement("a");
+                 link.setAttribute('class', "a")
+                 link.innerHTML = cname;
+                 li.appendChild(link);
+                 document.getElementById('cli').appendChild(li);
+
+                 // var line = document.createElement("li");
+                 // line.setAttribute("class", "divider");
+                 // document.getElementById('cli').appendChild(line);
+            }
+        });
+         });
+        $(document).ready(function() {
+            $(document).foundation();
+        }) ;
+
+    $('#search_area').keypress(function(e) {
+      if(e.keyCode == 13) {
+          let input_value = $('#search_area').val();
+        url_link = "api/document/?search=" + input_value;
+        $.get(url_link, function (data, status) {
+            console.log(data)
+            create_document("Search",data);
+            create_page(data);
+    })
+      }});
+
+
+
+
+
+
+    $('ul#cli').on('click','li',function () {
+        console.log($(this).text());
+        let id = $(this).text();
+        url_link = "api/document/?category_id=" + id;
+        $.get(url_link, function (data, status) {
+            console.log(data)
+            create_document(id,data);
+            create_page(data)
+        });
+    });
+
+    function create_document(id,topics_josn) {
+        $("#document_files li").remove();
+        $("#document_files h1").remove();
+        let topics = topics_josn.results;
+        let topic_title = document.createElement('h1');
+        topic_title.innerHTML = id;
+        document.getElementById("document_files").appendChild(topic_title);
+        for(let id in topics){
+            let dli = document.createElement('li');
+            dli.setAttribute('class', "accordion-navigation");
+            let topic = topics[id];
+            let title = topic.title;
+            if(title != ""){
+                let  d_link = document.createElement('a');
+                d_link.setAttribute('href', "#topic" + id);
+                d_link.setAttribute('style', "text-align: left");
+                d_link.innerHTML = "<strong>" + title;
+                let time = topic.add_time.substr(0,10);
+                let time_span = document.createElement("span");
+                time_span.setAttribute("style", "float: right");
+                time_span.innerHTML = time;
+                d_link.appendChild(time_span);
+                dli.appendChild(d_link);
+            }
+
+            let t_div = document.createElement("div");
+            t_div.setAttribute('id',  "topic" + id);
+            t_div.setAttribute('class', 'content');
+           // t_div.innerHTML = "<span>test</span><span>test2</span><span>test3</span>";
+
+            // let time = topic.add_time.substr(0,10);
+            // let time_span = document.createElement("span");
+            // time_span.setAttribute("style", "float: right");
+            // time_span.innerHTML = time;
+            // dli.appendChild(time_span);
+
+            let desc = topic.description;
+            if(desc.length > 0){
+                let desc_p = document.createElement("p");
+                desc_p.setAttribute("style", "display: block");
+                desc_p.innerHTML = desc;
+                t_div.appendChild(desc_p);
+
+            }
+            let documents=new Array();
+            if(topic.document_file != null){documents.push(topic.document_file)};
+            if(topic.document_file2 != null){documents.push(topic.document_file2)};
+            if(topic.document_file3 != null){documents.push(topic.document_file3)};
+            if(topic.document_file4 != null){documents.push(topic.document_file4)};
+            if(topic.document_file5 != null){documents.push(topic.document_file5)};
+
+            if(documents.length > 0){
+                let ul_document = document.createElement('ul');
+                for(let i in documents){
+                    let li_document = document.createElement('li');
+                    let  file_link = documents[i];
+                    let  a_link = document.createElement('a');
+                    a_link.setAttribute('href', file_link );
+                    a_link.setAttribute('target', "_Blank" );
+                    a_link.setAttribute('style', "word-break: break-word")
+                    a_link.innerHTML = file_link.substr(41,);
+                    li_document.appendChild(a_link);
+                    ul_document.appendChild(li_document);
+                }
+             t_div.appendChild(ul_document);
+            }
+
+            dli.appendChild(t_div);
+            document.getElementById("document_files").appendChild(dli);
+        }}
+    function create_page(topics_josn){
+        $("#page ul").remove();
+        let count = topics_josn.count;
+        p_ul = document.createElement("ul");
+        p_ul.setAttribute("class","pagination");
+        p_ul.setAttribute("id","pul");
+        for(var i=1; i<=Math.ceil(count/5); i++){
+            p_li = document.createElement("li");
+            // p_li.innerHTML = "<a href=# οnclick=\"page(this)\">" + i + "</a>";
+           //p_li.setAttribute("class", "page_num");
+            a_li = document.createElement('a');
+            a_li.setAttribute("class", "page_num");
+            a_li.innerHTML = i;
+            p_li.appendChild(a_li);
+            p_ul.appendChild(p_li);
+        }
+        document.getElementById("page").appendChild(p_ul);
+    }
+
+    $('div#page').on('click','li',function () {
+        console.log($(this).text());
+        let page_id = $(this).text();
+        let page_ulr = url_link + "&page=" + page_id;
+        let header = document.getElementById("document_files").getElementsByTagName('h1')[0].textContent;
+        console.log(page_ulr);
+        $.get(page_ulr, function (data, status) {
+            console.log(data)
+            create_document(header, data);
+            create_page(data);
+            document.getElementById('pul').getElementsByTagName('li')[page_id-1].setAttribute("class", "current");
+        })
+
+    })
+    //   function searchDocument() {
+    //       console.log("tyle");
+    //
+    //   }
+    //     // let url = "api/document/?category_id=" + id;
+    //     // $.get(url, function (data, status) {
+    //     //     console.log(data)
+    //     //     create_document(id,data);
+    //     //     create_page(data)
+    //     // });
+    // });
+    //
+    //
+    // function page(e){
+    //     console.log($(e).text());
+    //     let id = $(this).text();
+    //
+    //     // let url = "api/document/?category_id=" + id;
+    //     // $.get(url, function (data, status) {
+    //     //     console.log(data)
+    //     //     create_document(id,data);
+    //     //     creat_page(data)
+    //     // });
+    //
+    // };
+    //
+    // $('ul#pul').on('click','li.a',function () {
+    //     console.log($(this).text());
+    //     let id = $(this).text();
+    //     let url = "api/document/?category_id=" + id;
+    //
+    // });
+</script>
+</body>
+</html>

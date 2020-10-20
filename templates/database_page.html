@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSM Database</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <!-- 如果你不需要标题或图标可以删掉它 -->
+      <h1><a href="#">John Stonemart Memorials</a></h1>
+    </li>
+      <!-- 小屏幕上折叠按钮: 去掉 .menu-icon 类，可以去除图标。
+      如果需要只显示图片，可以删除 "Menu" 文本 -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="left">
+
+    </ul>
+  </section>
+</nav>
+
+<div>
+  <div class="medium-2 columns" style="background-color:#f1f1f1;">
+    <ul class="side-nav" id="cli">
+    </ul>
+  </div>
+
+  <div class="medium-10 columns">
+    <ul id="document_files" class="accordion" data-accordion data-options="multi_expand:true;">
+      <li class="accordion-navigation">
+        <a href="#demo">手风琴实例 1</a>
+        <div id="demo" class="content">
+           Demo 1 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+        </div>
+      </li>
+  <li class="accordion-navigation">
+    <a href="#demo2">手风琴实例 2</a>
+    <div id="demo2" class="content">
+      Demo 2 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+    </div>
+  </li>
+  <li class="accordion-navigation">
+    <a href="#demo3">手风琴实例 3</a>
+    <div id="demo3" class="content">
+      Demo 3 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+    </div>
+  </li>
+</ul>
+  </div>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+      $(document).foundation();
+})
+    $(document).ready(function(){
+        $.get("/category/",function(data,status){
+            console.log(data)
+            for(let item in data){
+                let cname = data[item].name;
+                 var li = document.createElement("li");
+                 var link = document.createElement("a");
+                 link.setAttribute('class', "a")
+                 link.innerHTML = cname;
+                 li.appendChild(link);
+                 document.getElementById('cli').appendChild(li);
+                 var line = document.createElement("li");
+                 line.setAttribute("class", "divider");
+                 document.getElementById('cli').appendChild(line);
+
+            }
+        });
+    })
+
+    $('ul#cli').on('click','li',function () {
+        console.log($(this).text());
+        let id = $(this).text();
+        let url = "/document/?category_id=" + id;
+        $.get(url, function (data, status) {
+            console.log(data)
+            create_document(data);
+        });
+    });
+
+    function create_document(topics_josn) {
+        $("#document_files li").remove();
+        let topics = topics_josn.results;
+        for(let id in topics){
+            let dli = document.createElement('li');
+            dli.setAttribute('class', "accordion-navigation");
+            let topic = topics[id];
+            let title = topic.title;
+            if(title != ""){
+                let  d_link = document.createElement('a');
+                d_link.setAttribute('href', "#topic" + id);
+                d_link.innerHTML = title;
+                dli.appendChild(d_link);
+            }
+
+            let t_div = document.createElement("div");
+            t_div.setAttribute('id',  "topic" + id);
+            t_div.setAttribute('class', 'content');
+           // t_div.innerHTML = "<span>test</span><span>test2</span><span>test3</span>";
+
+            let time = topic.add_time.substr(0,19);
+            let time_span = document.createElement("p");
+            time_span.setAttribute("style", "float: right; display: block");
+            time_span.innerHTML = "Upload Time: " + time;
+            t_div.appendChild(time_span);
+
+            let desc = topic.description;
+            if(desc.length > 0){
+                let desc_p = document.createElement("p");
+                desc_p.setAttribute("style", "display: block");
+                desc_p.innerHTML = desc;
+                t_div.appendChild(desc_p);
+
+            }
+            let documents=new Array();
+            if(topic.document_file != null){documents.push(topic.document_file)};
+            if(topic.document_file2 != null){documents.push(topic.document_file2)};
+            if(topic.document_file3 != null){documents.push(topic.document_file3)};
+            if(topic.document_file4 != null){documents.push(topic.document_file4)};
+            if(topic.document_file5 != null){documents.push(topic.document_file5)};
+
+            if(documents.length > 0){
+                let ul_document = document.createElement('ul');
+                for(let i in documents){
+                    let li_document = document.createElement('li');
+                    let  file_link = documents[i];
+                    let  a_link = document.createElement('a');
+                    a_link.setAttribute('href', file_link );
+                    a_link.setAttribute('target', "_Blank" );
+                    a_link.innerHTML = file_link.substr(41,);
+                    li_document.appendChild(a_link);
+                    ul_document.appendChild(li_document);
+                }
+             t_div.appendChild(ul_document);
+            }
+
+            dli.appendChild(t_div);
+            document.getElementById("document_files").appendChild(dli);
+            console.log(title,documents[0],desc,time);
+        }
+
+        // var  d_link = document.createElement('a');
+        // d_link.setAttributeNode('href', title)
+
+
+    }
+
+     function updateSidebar() {
+       var $width = document.documentElement.clientWidth,
+        $height = document.documentElement.clientHeight,
+        $main = jQuery('div[role=main]').height();
+
+    if($width > 755) {
+        if($main > $height) {
+            jQuery('div[role="navigation"]').css({'min-height': $main});
+        } else {
+            jQuery('div[role="navigation"]').css({'min-height': $height});
+        }
+    } else {
+        jQuery('div[role="navigation"]').removeAttr('style');
+    }
+}
+
+// then call it on load AND browser resize
+
+    $(window)
+        .load(function() {
+            updateSidebar();
+        })
+        .resize(function(){
+            updateSidebar();
+        });
+
+
+</script>
+</html>
